@@ -154,6 +154,41 @@ public class RubikCube implements Subject<RubikCube> {
         System.out.println(" ");
     }
 
+
+    public List<List<Integer>> generateArray(){
+        List<List<Integer>> answer = new ArrayList<>();
+
+        answer.add(this.main.getValueList());
+        answer.add(this.right.getValueList());
+        answer.add(this.left.getValueList());
+        answer.add(this.back.getValueList());
+        answer.add(this.top.getValueList());
+        answer.add(this.bottom.getValueList());
+        return answer;
+    }
+
+    public String generatePrintableString(){
+        StringBuilder result = new StringBuilder();
+        
+        String[] topStrings = join(RubikSide.getEmptyString(getSize()), getTop().getString());
+        Arrays.stream(topStrings).forEach(str -> {
+            result.append(str).append("\n");
+        });
+        
+        String[] middleStrings = join(getLeft().getString(), getMain().getString(), getRight().getString(), getBack().getString());
+        Arrays.stream(middleStrings).forEach(str -> {
+            result.append(str).append("\n");
+        });
+        
+        String[] bottomStrings = join(RubikSide.getEmptyString(getSize()), getBottom().getString());
+        Arrays.stream(bottomStrings).forEach(str -> {
+            result.append(str).append("\n");
+        });
+    
+        result.append("\n");
+        return result.toString();
+    }
+
     public void randomize(){
         Random random = new Random();
         int randomActionCount = random.nextInt(100);
