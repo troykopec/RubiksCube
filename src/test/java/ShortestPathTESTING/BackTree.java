@@ -51,7 +51,7 @@ public class BackTree {
         this.solvedNode = new RubiksCubeState(new RubikCube(3), 0, null);
         ArrTree.put(this.solvedNode, 0);
 
-        // Generate all actions and store into the backtree
+        // Generate all of the first actions and store into the backtree
         for (Action<RubikCube> action : solvedNode.getRubiksCube().getAllActions()) {
             try {
                 RubikCube newState = solvedNode.getRubiksCube().clone();
@@ -77,7 +77,7 @@ public class BackTree {
         System.out.println("Expanding Back");
         Map<RubiksCubeState, Integer> backTreeNodes = new HashMap<>(ArrTree);
 
-        // I
+        // Generate all of the actions that can be done from this node
         for (Map.Entry<RubiksCubeState, Integer> backEntry : backTreeNodes.entrySet()) {
             RubiksCubeState node = backEntry.getKey();
             Action<RubikCube>[] actions = node.getRubiksCube().getAllActions();
