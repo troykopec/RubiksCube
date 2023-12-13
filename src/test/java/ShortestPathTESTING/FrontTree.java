@@ -20,6 +20,7 @@ public class FrontTree {
         RubikCube rubix = new RubikCube(3);
         num_of_nodes = 0;
         try {
+            //rubix.randomize() would go here, but for the sake of time only using 10 rotations
             rubix.turnRowToRight(0);
             rubix.turnRowToRight(1);
             rubix.turnColDown(0);
@@ -117,7 +118,7 @@ public class FrontTree {
                         }
                         // Else, add the new state to the tree
                         RubiksCubeState newNode = new RubiksCubeState(newState, node.getLevel()+1, node);
-                        if (!ArrTree.containsKey(newNode)) {
+                        if (!ArrTree.containsKey(newNode)) { //checking to see if node is in the tree, allows to limit nodes in tree by even less than the paper
                             node.addChild(newNode);
                             ArrTree.put(newNode, newNode.calculateMisplacedFacelets());
                             this.num_of_nodes++;

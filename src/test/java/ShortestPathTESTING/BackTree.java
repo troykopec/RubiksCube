@@ -88,7 +88,7 @@ public class BackTree {
                         RubikCube newState = node.getRubiksCube().clone(); // Create a copy of the node
                         newState.performAction(action); // Apply the action to generate a new state
                         RubiksCubeState newNode = new RubiksCubeState(newState, node.getLevel()+1, node);
-                        if (!ArrTree.containsKey(newNode)) {
+                        if (!ArrTree.containsKey(newNode)) { //checking to see if node is in the tree, allows to limit nodes in tree by even less than the paper
                             node.addChild(newNode);
                             ArrTree.put(newNode, newNode.calculateMisplacedFacelets());
                             this.num_of_nodes++;
@@ -143,7 +143,7 @@ public class BackTree {
 
     //Function to multithread DFS
     public void parallelDFSTraversal(RubiksCubeState root, int depthLimit, int numThreads) {
-        ExecutorService executorService = Executors.newFixedThreadPool(numThreads);
+        ExecutorService executorService = Executors.newFixedThreadPool(numThreads); // used for multithreading
         List<RubiksCubeState> rootChildren = getChildrenNodes(root); //get the root nodes children
         
         for (RubiksCubeState subRoot : rootChildren) {

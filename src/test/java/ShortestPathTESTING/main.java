@@ -1,6 +1,6 @@
 package ShortestPathTESTING;
 
-public class BackTreeTest {
+public class main {
     public static void main(String[] args) {
         // Specify limits
         int limitHash = 5; 
@@ -9,9 +9,6 @@ public class BackTreeTest {
         // Show # of proccessors available
         int availableProcessors = Runtime.getRuntime().availableProcessors();
         System.out.println("Number of available processors/cores: " + availableProcessors);
-
-        //timing
-        
 
         // Run the test
         BackTree backTest = new BackTree(limitBFS,limitHash);
